@@ -37,8 +37,8 @@
                                 <img class="mx-3 w-6" src="{{ asset('img/delete.png') }}" alt="Edit">
                             </a>
 
-                            <a href="">
-                                <img class="mx-3 w-6" src="{{ asset('img/view.png') }}" alt="Edit">
+                            <a href="{{ route('tarea.show',$tarea) }}">
+                                <img class="mx-3 w-6" src="{{ asset('img/view.png') }}" alt="View">
                             </a>
                         </td>
                     </tr>

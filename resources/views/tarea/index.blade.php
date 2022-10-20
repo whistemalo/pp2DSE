@@ -2,6 +2,22 @@
 @section('title',"Listado de Tareas")
 @section('contenido')
     <div class=" ">
+
+        <h1 class="text-xl my-5">Registrar Nueva Tarea</h1>
+
+        <form class="flex border justify-around" action="{{ route('tarea.store') }}" method="POST">
+          <x-tarea-form-body />
+        </form>
+        @if ($errors->any())
+          <div class="flex alert alert-danger ">
+              <ol class="list-disc flex-col">
+                  @foreach ($errors->all() as $error)
+                      <li class="text-md">{{ $error }}</li>
+                  @endforeach
+              </ol>
+          </div>
+      @endif
+
         <h1>
             Listado de Tareas
         </h1>
@@ -33,9 +49,13 @@
                                 <img class="mx-3 w-6" src="{{ asset('img/edit.png') }}" alt="Edit">
                             </a>
 
-                            <a href="">
-                                <img class="mx-3 w-6" src="{{ asset('img/delete.png') }}" alt="Edit">
-                            </a>
+                            <form action="{{ route("tarea.destroy", $tarea) }}" method="post" >
+                                @csrf
+                                @method('delete')
+                                <button type="submit" href="">
+                                    <img  class="mx-3 w-6" src="{{ asset('img/delete.png') }}" alt="Edit">
+                                </button>
+                            </form>
 
                             <a href="{{ route('tarea.show',$tarea) }}">
                                 <img class="mx-3 w-6" src="{{ asset('img/view.png') }}" alt="View">
